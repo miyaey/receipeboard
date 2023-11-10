@@ -31,7 +31,7 @@
                    th:data-uri="@{|/post/vote/${post.id}|}">
                     추천
                     <!--                    <span class="badge rounded-pill bg-success" th:text="${#lists.size(post.voter)}"></span>-->
-                    <span class="badge rounded-pill bg-success p-2" style="font-size: 1.2em;" th:text="${#lists.size(post.voter)}"></span>
+                    <span class="badge rounded-pill bg-warning p-1" style="font-size: 1em;" th:text="${#lists.size(post.voter)}"></span>
                 </a>
                 <a th:href="@{|/post/update/${post.id}|}" class="btn btn-sm btn-outline-secondary"
                    sec:authorize="isAuthenticated()"
@@ -60,7 +60,17 @@
                         <div th:text="${#temporals.format(comment.createdDate, 'yyyy-MM-dd HH:mm')}"></div>
                     </div>
                 </div>
-                <!--                -->
+                <!--  댓글 수정/삭제 -->
+                <div class = "btn-container">
+                    <a id="update-btn" th:href="@{|/comment/update/${comment.id}|}" class="btn btn-sm btn-outline-secondary"
+                       sec:authorize="isAuthenticated()"
+                       th:if="${comment.author != null and #authentication.getPrincipal().getUsername() == comment.author.nickname}"
+                       th:text="수정"></a>
+                    <a href="javascript:void(0);" th:data-uri="@{|/comment/delete/${comment.id}|}"
+                       class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
+                       th:if="${comment.author != null and #authentication.getPrincipal().getUsername() == comment.author.nickname}"
+                       th:text="삭제"></a>
+                </div>
             </div>
         </div>
     </div>

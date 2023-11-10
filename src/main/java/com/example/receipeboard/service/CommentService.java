@@ -5,11 +5,13 @@ import com.example.receipeboard.data.dto.CommentResponse;
 import com.example.receipeboard.data.dto.MemberResponse;
 import com.example.receipeboard.data.dto.PostResponse;
 import com.example.receipeboard.data.entity.Comment;
+import com.example.receipeboard.data.entity.Post;
 import com.example.receipeboard.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -48,6 +50,17 @@ public class CommentService {
         }else {
             throw new DataNotFoundException("해당 게시글이 없습니다");
         }
+    }
+
+    public CommentResponse update(CommentResponse commentResponse, String content) {
+        commentResponse.setContent(content);
+        Comment comment = of(commentResponse);
+        this.commentRepository.save(comment);
+        return commentResponse;
+    }
+
+    public void delete(CommentResponse commentResponse) {
+        this.commentRepository.deleteById(commentResponse.getId());
     }
 
 }

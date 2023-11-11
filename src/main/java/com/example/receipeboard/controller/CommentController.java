@@ -51,7 +51,7 @@ public class CommentController {
         if(!commentResponse.getAuthor().getNickname().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
         }
-        commentRequest.setContent(commentRequest.getContent());
+        commentRequest.setContent(commentResponse.getContent());
         return "comment_update";
     }
 
@@ -68,7 +68,7 @@ public class CommentController {
         }
         this.commentService.update(commentResponse, commentRequest.getContent());
         return String.format("redirect:/post/detail/%s#comment_%s",
-                commentResponse.getPost().getId(), commentResponse.getId());   //  /post/detail/{id}로 리디렉션
+                commentResponse.getPost().getId(), commentResponse.getId());
     }
 
     @PreAuthorize("isAuthenticated()")

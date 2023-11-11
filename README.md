@@ -5,3 +5,6 @@
 DB 설계
 <br/>
 ![receipeboard_db](https://github.com/miyaey/receipeboard/assets/148731548/98ca61d0-b92a-44cb-9953-76bf36b5c54b)
+
+
+https://southern-rudbeckia-e11.notion.site/Project-name-Receipe-board-75a10530acb1401f8bf3e418e64d5697?pvs=4
